@@ -7,13 +7,24 @@ module.exports = app => {
   app.log.info('Yay, the app was loaded!')
 
   app.on('issues.opened', async context => {
-    const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
-    return context.github.issues.createComment(issueComment)
+    context.log.info(context);
+    const issueComment = context.issue({ body: 'Thanks for opening this issue!' });
+    return context.github.issues.createComment(issueComment);
   })
 
-  // For more information on building apps:
-  // https://probot.github.io/docs/
+  app.on(["pull_request.reopened", "pull_request.opened"], async context => {
+    const pr_comment = context.issue({body: 'Thanks for opening a PR with us'});
+    return context.github.issues.createComment(pr_comment)
+  });
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+  app.on(["pull_request.reopened", "pull_request.opened"], async context => {
+    const label = context.issue({labels: '["bug"]'});
+    return context.github.issues.addLabels(label);
+  });
+
+  app.on(["pull_request.reopened", "pull_request.opened"], async context => {
+    const assignees = context.issue({assignees: '["iAbhishek91"]'});
+    context.log.info(context.github.issues.listAssignees());
+  });
+
 }

@@ -1,33 +1,11 @@
-# review-pr-webapp
+# Create a Web App
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that assign reviewer, greet the author, add label based on commit message
+1. Create new app https://probot.github.io/docs/hello-world/
 
-## Setup
+2. Develop a new app(https://smee.io/) https://probot.github.io/docs/development/
 
-```sh
-# Install dependencies
-npm install
+3. logging https://probot.github.io/docs/logging/
 
-# Run the bot
-npm start
-```
+4. github events: mentioned here : https://developer.github.com/webhooks/event-payloads/#pull_request
 
-## Docker
-
-```sh
-# 1. Build container
-docker build -t review-pr-webapp .
-
-# 2. Start container
-docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> review-pr-webapp
-```
-
-## Contributing
-
-If you have suggestions for how review-pr-webapp could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
-
-For more, check out the [Contributing Guide](CONTRIBUTING.md).
-
-## License
-
-[ISC](LICENSE) © 2020 Abhishek Das <i.abhishek.dass@gmail.com>
+5. payload from the API : https://docs.github.com/en/free-pro-team@latest/rest/reference/issues#list-assignees OR https://octokit.github.io/rest.js/v18#issues
