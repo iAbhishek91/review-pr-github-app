@@ -22,9 +22,7 @@ module.exports = app => {
     return context.github.issues.addLabels(label);
   });
 
-  app.on(["pull_request.reopened", "pull_request.opened"], async context => {
-    const assignees = context.issue({assignees: '["iAbhishek91"]'});
-    context.log.info(context.github.issues.listAssignees());
+  app.on('pull_request.closed', async context => {
+    context.log.info(context.payload.pull_request.merged);
   });
-
 }
